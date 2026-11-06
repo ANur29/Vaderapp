@@ -1,0 +1,14 @@
+[project]
+name = "vaderapp"
+version = "0.1.0"
+description = "Väderapp med Flask som visar väder och prognos från Open-Meteo"
+requires-python = ">=3.10"
+
+# E = stil, F = fel, I = importordning, N = namngivning
+[tool.ruff.lint]
+select = ["E", "F", "I", "N"]
+
+# Gör att pytest hittar mappen application och letar tester i tests/
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
