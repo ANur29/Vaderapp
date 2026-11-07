@@ -11,8 +11,8 @@ def hamta_prognos(latitud, longitud):
     params = {
         "latitude": latitud,
         "longitude": longitud,
-        "current": "temperature_2m, wind_speed_10m",
-        "daily": "temperature_2m_max, temperature_2m_min, precipitation_sum",
+        "current": "temperature_2m,wind_speed_10m",
+        "daily": "temperature_2m_max,temperature_2m_min,precipitation_sum",
         "timezone": "auto",
         "forecast_days": 3,
     }
@@ -26,5 +26,5 @@ def hamta_prognos(latitud, longitud):
     data = response.json()
 
     if not data.get("daily", {}).get("time"):
-        raise VaderError("Ingen väderdatat tillgänglig")
+        raise VaderError("Ingen väderdata tillgänglig")
     return data
