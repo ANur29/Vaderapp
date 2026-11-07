@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Startsida{% endblock %}
+
+{% block content %}
+    <h1>Välkommen till väderappen!</h1>
+    <p>Välj en stad för att se vädret just nu och en prognos för tre dagar.</p>
+
+    <!-- method="get" gör att staden hamnar i adressen: /prognos?stad=... -->
+    <form action="{{ url_for('prognos') }}" method="get">
+        <select name="stad" class="form-select mb-3">
+            {% for stad in stader %}
+                <option>{{ stad }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit" class="btn btn-primary">Visa väder</button>
+    </form>
+{% endblock %}

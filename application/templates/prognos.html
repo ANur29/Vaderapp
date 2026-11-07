@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Väder i {{ stad }}{% endblock %}
+
+{% block content %}
+    <h1>Väder i {{ stad }}</h1>
+    <p>Just nu: {{ nu.temperatur | temp }}, vind {{ nu.vind }} km/h</p>
+
+    <h2>Prognos för tre dagar</h2>
+    {% if dagar %}
+        <table class="table">
+            <tr>
+                <th>Datum</th>
+                <th>Högst</th>
+                <th>Lägst</th>
+                <th>Nederbörd</th>
+            </tr>
+            {% for dag in dagar %}
+                <tr>
+                    <td>{{ dag.datum }}</td>
+                    <td>{{ dag.hogst | temp }}</td>
+                    <td>{{ dag.lagst | temp }}</td>
+                    <td>{{ dag.nederbord }} mm</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>Ingen prognos finns.</p>
+    {% endif %}
+
+    <a href="{{ url_for('index') }}">Välj en annan stad</a>
+{% endblock %}

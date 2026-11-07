@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% block title %}Väderappen{% endblock %}</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand bg-body-tertiary mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('index') }}">Väderappen</a>
+        </div>
+    </nav>
+
+    <main class="container">
+    {% block content %}{% endblock %}
+    </main>
+
+    <footer class="container mt-4">
+        <p>
+            Källa: Väderdata från
+            <a href="https://open-meteo.com/">Open-Meteo.com</a> (CC BY 4.0)
+        </p>
+    </footer>
+</body>
+
+</html>
