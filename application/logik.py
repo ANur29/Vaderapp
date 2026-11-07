@@ -9,3 +9,27 @@ STADER = {
 
 def finns_stad(namn):
     return namn in STADER
+
+
+def tolka_dagar(data):
+    daily = data["daily"]
+    dagar = []
+    for datum, hogst, lagst, nederbord in zip(
+        daily["time"],
+        daily["temperature_2m_max"],
+        daily["temperature_2m_min"],
+        daily["precipitation_sum"],
+    ):
+        dagar.append(
+            {"datum": datum, "hogst": hogst, "lagst": lagst, "nederbord": nederbord}
+        )
+    return dagar
+
+
+def tolka_nu(data):
+    current = data["current"]
+    return {"temperatur": current["temperature_2m"], "vind": current["wind_speed_10m"]}
+
+
+def formatera_temp(varde):
+    return f"{varde:.1f} °C".replace(".", ",")
