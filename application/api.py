@@ -18,7 +18,7 @@ def hamta_prognos(latitud, longitud):
     }
 
     try:
-        response = (requests.get(URL, params=params, timeout=5))
+        response = requests.get(URL, params=params, timeout=5)
         response.raise_for_status()
     except requests.RequestException as fel:
         raise VaderError("Väderdata kunde inte hämtas. Försök igen") from fel
