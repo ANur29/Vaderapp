@@ -1,4 +1,5 @@
 import requests
+
 # första testet mot api:et för att se hur svaret ser ut
 params = {
     "latitude": 59.33,
