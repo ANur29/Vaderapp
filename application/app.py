@@ -39,7 +39,7 @@ def prognos():
     )
 
 
-# sida när adressen inte fins
+# sida när adressen inte finns
 @app.errorhandler(404)
 def sidan_finns_inte(e):
     return render_template("fel.html", fel="Sidan finns inte."), 404

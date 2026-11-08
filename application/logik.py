@@ -35,5 +35,6 @@ def tolka_nu(data):
     return {"temperatur": current["temperature_2m"], "vind": current["wind_speed_10m"]}
 
 
+# gör om t.ex 12.34 till "12,3 °C"
 def formatera_temp(varde):
     return f"{varde:.1f} °C".replace(".", ",")

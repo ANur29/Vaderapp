@@ -17,7 +17,7 @@ DATA = {
 }
 
 
-# fixture som ger en testklient, då behöver vi ej starta srvern
+# fixture som ger en testklient, då behöver vi ej starta servern
 @pytest.fixture
 def klient():
     app.config["TESTING"] = True
