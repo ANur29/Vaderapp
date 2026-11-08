@@ -3,6 +3,7 @@ import pytest
 from application.logik import finns_stad, formatera_temp, tolka_dagar, tolka_nu
 
 
+# skrev testet innan funktionen fanns
 @pytest.mark.parametrize(
     "namn, forvantat",
     [
@@ -19,6 +20,7 @@ def test_finns_stad(namn, forvantat):
     assert finns_stad(namn) == forvantat
 
 
+# påhittad data som ser ut som svar från apiet
 DATA = {
     "current": {"temperature_2m": 4.2, "wind_speed_10m": 11.5},
     "daily": {
@@ -30,6 +32,7 @@ DATA = {
 }
 
 
+# kollar att varje dag får rätt värden
 @pytest.mark.parametrize(
     "index, forvantat",
     [
@@ -48,6 +51,7 @@ def test_tolka_nu():
     assert tolka_nu(DATA) == {"temperatur": 4.2, "vind": 11.5}
 
 
+# kollar avrundning, minusgrader och decimalkomma
 @pytest.mark.parametrize(
     "varde, forvantat",
     [

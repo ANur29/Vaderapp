@@ -10,15 +10,17 @@ from application.logik import (
 )
 
 app = Flask(__name__)
-
+# gör formatera_temp till en filter som heter temp i mallarna
 app.add_template_filter(formatera_temp, "temp")
 
 
+# startsidan med listan över städer
 @app.route("/")
 def index():
     return render_template("index.html", stader=STADER)
 
 
+# prognossidan, staden kommer från adressen
 @app.route("/prognos")
 def prognos():
     stad = request.args.get("stad")
@@ -37,6 +39,7 @@ def prognos():
     )
 
 
+# sida när adressen inte fins
 @app.errorhandler(404)
 def sidan_finns_inte(e):
     return render_template("fel.html", fel="Sidan finns inte."), 404

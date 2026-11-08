@@ -5,6 +5,7 @@ import requests
 
 from application.app import app
 
+# påhittat api svar så att testerna inte behöver internet
 DATA = {
     "current": {"temperature_2m": 4.2, "wind_speed_10m": 11.5},
     "daily": {
@@ -16,6 +17,7 @@ DATA = {
 }
 
 
+# fixture som ger en testklient, då behöver vi ej starta srvern
 @pytest.fixture
 def klient():
     app.config["TESTING"] = True
@@ -30,6 +32,7 @@ def test_startsida(klient):
     assert "Kiruna" in text
 
 
+# apiet är mockat så det svarar med DATA
 @patch("application.api.requests.get")
 def test_prognos_lyckas(mock_get, klient):
     mock_get.return_value = Mock(json=lambda: DATA)
@@ -47,6 +50,7 @@ def test_prognos_okand_stad(klient):
     assert "Uppsala" in svar.get_data(as_text=True)
 
 
+# låtsas att apiet inte svarar
 @patch("application.api.requests.get", side_effect=requests.Timeout)
 def test_prognos_timeout(mock_get, klient):
     svar = klient.get("/prognos?stad=Malmö")
@@ -54,6 +58,7 @@ def test_prognos_timeout(mock_get, klient):
     assert "kunde inte hämtas" in svar.get_data(as_text=True)
 
 
+# låtsas som att servern svarar med ett http fel
 @patch("application.api.requests.get")
 def test_prognos_http_fel(mock_get, klient):
     fel_svar = Mock()
